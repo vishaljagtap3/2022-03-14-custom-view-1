@@ -2,6 +2,7 @@ package com.aavidsoft.customview1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
 import android.widget.CheckBox
 import android.widget.CompoundButton
 
@@ -9,6 +10,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var exitButton : ExitButton
     lateinit var chkExit : CheckBox
+
+    private var backPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,5 +44,18 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         chkExit = findViewById(R.id.chkExit)
         exitButton = findViewById(R.id.btnExit)
+    }
+
+    override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if(((System.currentTimeMillis() - backPressedTime) / 1000 ) < 1 ) {
+                System.exit(0)
+                return true
+            }
+            else {
+                backPressedTime = System.currentTimeMillis()
+            }
+        }
+        return false
     }
 }
