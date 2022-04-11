@@ -7,17 +7,25 @@ import android.content.DialogInterface
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 
 @SuppressLint("AppCompatCustomView")
 class ExitButton(context : Context, attributeSet: AttributeSet? = null) : Button(context, attributeSet) {
+
+    var exitable = true
 
     init {
         setOnClickListener(
             object : OnClickListener {
                 override fun onClick(v: View?) {
 
-                    var exitAlertDialog : AlertDialog = getExitAlertDialog()
-                    exitAlertDialog.show()
+                    if(exitable) {
+                        var exitAlertDialog: AlertDialog = getExitAlertDialog()
+                        exitAlertDialog.show()
+                    }
+                    else {
+                        Toast.makeText(context, "In mid of an operation...", Toast.LENGTH_LONG).show()
+                    }
 
                 }
             }

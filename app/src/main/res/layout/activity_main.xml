@@ -7,7 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <CheckBox
+        android:checked="true"
+        android:id="@+id/chkExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <com.aavidsoft.customview1.ExitButton
+        android:id="@+id/btnExit"
         android:text="Exit App"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
